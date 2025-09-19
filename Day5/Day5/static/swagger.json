@@ -1,0 +1,95 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Banking Customer API",
+    "description": "API for managing banking customers and ML model",
+    "version": "1.0"
+  },
+  "paths": {
+    "/customer": {
+      "post": {
+        "summary": "Add a new customer",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "customer",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["name", "age", "balance"],
+              "properties": {
+                "name": { "type": "string" },
+                "age": { "type": "integer" },
+                "balance": { "type": "number", "format": "float" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Customer added successfully" }
+        }
+      }
+    },
+    "/customers": {
+      "get": {
+        "summary": "Get list of all customers",
+        "responses": {
+          "200": {
+            "description": "List of customers",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "integer" },
+                  "name": { "type": "string" },
+                  "age": { "type": "integer" },
+                  "balance": { "type": "number", "format": "float" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/train": {
+      "post": {
+        "summary": "Train ML model",
+        "responses": {
+          "200": { "description": "Model trained successfully" }
+        }
+      }
+    },
+    "/predict": {
+      "post": {
+        "summary": "Predict using ML model",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "prediction",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["age", "balance"],
+              "properties": {
+                "age": { "type": "integer" },
+                "balance": { "type": "number", "format": "float" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Prediction result",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "prediction": { "type": "integer" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
