@@ -1,0 +1,11 @@
+### Post example
+
+
+POST http://127.0.0.1:5000/customer
+Content-Type: application/json
+
+{
+  "name": "foo",
+  "age": 24,
+  "balance": 1
+}
