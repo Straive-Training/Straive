@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Banking FAQ Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+        textarea {
+            width: 100%;
+            height: 80px;
+            font-size: 1rem;
+        }
+        button {
+            padding: 0.6rem 1rem;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            cursor: pointer;
+        }
+        .answer, .error {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 5px;
+        }
+        .answer {
+            background-color: #e7f4e4;
+            border: 1px solid #4CAF50;
+            white-space: pre-wrap;
+        }
+        .error {
+            background-color: #fddede;
+            border: 1px solid #f44336;
+            color: #b00020;
+        }
+    </style>
+</head>
+<body>
+    <h1>Banking FAQ Assistant</h1>
+    <form method="POST" action="/">
+        <label for="question">Ask your banking question:</label><br />
+        <textarea id="question" name="question" required>{{ question or '' }}</textarea><br />
+        <button type="submit">Get Answer</button>
+    </form>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% if answer %}
+        <div class="answer"><strong>Answer:</strong><br />{{ answer }}</div>
+    {% endif %}
+</body>
+</html>
